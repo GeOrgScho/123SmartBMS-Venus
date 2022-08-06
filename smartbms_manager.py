@@ -531,6 +531,11 @@ class SmartBMSToDbus:
             if bms.allowed_to_discharge: discharge_capacity_sum += capacity
         
         # Discharge - use SoC for discharge current
+        # notes: Georg can be deleted:
+            # use var for limiting the voltage, discarage and charge limits so it can be adjusted bei the users in the UI
+            # with f.e. 0.5C discharing limit ... now hard coded with from 1 to 0.125... I like the approach according to SoC
+            # would be nice if we add the posibility to adjust it via UI
+
         discharge_limit = discharge_capacity_sum*self.BATTERY_DISCHARGE_MAX_RATING
         
         if system_lowest_cell_voltage - 0.05 <= cell_voltage_min_bms:
